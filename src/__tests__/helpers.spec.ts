@@ -17,3 +17,31 @@ describe('Password', () => {
     expect(areEqualPasswords).toBeTruthy();
   });
 });
+
+describe('User', () => {
+  test('Should be able to find a user and get all user props', async () => {
+    const createdUser = await createUser();
+    const user = await getUserData();
+
+    expect(user._id).toBeDefined();
+  });
+
+  test(`Should be able to get all of a user's reminders`, async () => {
+    const createdUser = await createUser();
+
+    const reminders: IReminder[] = await fetchAllUserReminders(createdUser._id);
+  });
+
+  test(`Should be able to get all of a user's reminders and the new one`, async () => {
+    const createdUser = await createUser();
+    const newReminder: IReminder = {
+      time: new Date(),
+      message: 'Buy oranges',
+    };
+
+    const reminders: IReminder[] = await appendReminderToUser(createdUser._id);
+
+    expect(reminders).toBeDefined();
+    expect(reminders.length).toBeGreaterThanOrEqual(0);
+  });
+});
