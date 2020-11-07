@@ -1,8 +1,9 @@
 import { IUser, UserModel } from '../models/User';
+import { IReminder, ReminderModel } from '../models/Reminder';
 
 import db from '../db-setup';
 
-describe('User model', () => {
+describe('Models', () => {
   beforeAll(async () => await db.connect());
   afterEach(async () => await db.clearDatabase());
   afterAll(async () => await db.closeDatabase());
@@ -15,5 +16,14 @@ describe('User model', () => {
     };
 
     const user = await UserModel.create(sampleUser);
+  });
+
+  test('Should be able to create a A Reminder model', async () => {
+    const sampleReminder: IReminder = {
+      time: new Date(),
+      message: 'Buy milk',
+    };
+
+    const user = await ReminderModel.create(sampleReminder);
   });
 });
