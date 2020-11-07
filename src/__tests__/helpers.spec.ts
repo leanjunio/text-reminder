@@ -8,6 +8,12 @@ describe('Password', () => {
     expect(hashedPassword).toEqual(expect.not.stringMatching(password));
   });
 
-    expect(hashedpassword).toEqual(expect.not.stringMatching(password));
+  test('Should return true when comparing the correct password', async () => {
+    const password: string = 'some-password';
+    const hashedPassword = await hashPassword(password);
+
+    const areEqualPasswords = await comparePasswords(password, hashedPassword);
+
+    expect(areEqualPasswords).toBeTruthy();
   });
 });
