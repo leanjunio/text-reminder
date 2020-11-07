@@ -1,6 +1,6 @@
 import { getModelForClass, prop } from '@typegoose/typegoose';
 
-class ReminderClass {
+export class ReminderClass {
   @prop()
   public time!: Date;
 
