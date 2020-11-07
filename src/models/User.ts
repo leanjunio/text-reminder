@@ -2,7 +2,7 @@ import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
 
 import { ReminderClass } from './Reminder';
 
-class UserClass {
+export class UserClass {
   @prop()
   public firstName!: string;
 
