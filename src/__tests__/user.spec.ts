@@ -8,7 +8,7 @@ describe('User model', () => {
   afterAll(async () => await db.closeDatabase());
 
   test('Should be able to create a User model', async () => {
-    const sampleUser = {
+    const sampleUser: IUser = {
       firstName: 'John',
       mobile: '+16478394645',
       password: 'some-password',
