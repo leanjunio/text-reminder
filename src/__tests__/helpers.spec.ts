@@ -1,4 +1,4 @@
-import { hashPassword, comparePasswords } from '../helpers/password';
+import { hashPassword, comparePasswords } from '../utilities/password';
 
 describe('Password', () => {
   test('Should be able to encrypt a password string', async () => {
