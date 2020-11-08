@@ -3,7 +3,7 @@ import { hashPassword, comparePasswords } from '../utilities/password';
 import { IUser } from '../models/User';
 
 import { registerUser, getUserData, fetchAllUserReminders } from '../helpers/users';
-import { attachReminderToUser, createReminder } from '../helpers/reminder';
+import { attachReminderToUser, createReminder, getReminder } from '../helpers/reminder';
 
 import { IReminder } from '../models/Reminder';
 
@@ -97,7 +97,7 @@ describe('Testing helpers', () => {
     // });
   });
 
-  describe('Address', () => {
+  describe('Reminder', () => {
     test('Should be able to create a reminder', async () => {
       const newReminder: IReminder = {
         time: new Date(),
