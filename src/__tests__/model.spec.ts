@@ -41,12 +41,12 @@ describe('Models', () => {
       message: 'Buy milk',
     };
 
-    const reminder = await createReminder(user._id, reminderData);
+    const reminder = await createReminder(reminderData);
 
     expect(reminder._id).toBeDefined();
   });
 
-  test('Should be able to create a A Reminder model', async () => {
+  test('Should be able to create a Reminder model', async () => {
     const sampleReminder: IReminder = {
       time: new Date(),
       message: 'Buy milk',
