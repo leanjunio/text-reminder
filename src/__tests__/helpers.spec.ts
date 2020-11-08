@@ -79,6 +79,20 @@ describe('Testing helpers', () => {
 
       expect(createdUserWithReminder.reminders).toBeDefined();
     });
+
+    // test(`Should be able to get all of a user's reminders and the new one`, async () => {
+    //   const createdUser = await createUser();
+    //   const newReminder: IReminder = {
+    //     time: new Date(),
+    //     message: 'Buy oranges',
+    //   };
+
+    //   const reminders: IReminder[] = await appendReminderToUser(createdUser._id);
+
+    //   expect(reminders).toBeDefined();
+    //   expect(reminders.length).toBeGreaterThanOrEqual(0);
+    // });
+  });
   describe('Address', () => {
     test('Should be able to create a reminder', async () => {
       const newReminder: IReminder = {
