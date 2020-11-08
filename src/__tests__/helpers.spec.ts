@@ -45,11 +45,12 @@ describe('User', () => {
       expect(user._id).toBeDefined();
     });
 
-  test(`Should be able to get all of a user's reminders`, async () => {
-    const createdUser = await createUser();
+    test('Should get a message saying "No user with id:{id} found."', async () => {
+      const id = new Types.ObjectId();
+      const user: any = await getUserData(id);
 
-    const reminders: IReminder[] = await fetchAllUserReminders(createdUser._id);
-  });
+      expect(user).toMatch(/No user with id/);
+    });
 
   test(`Should be able to get all of a user's reminders and the new one`, async () => {
     const createdUser = await createUser();
