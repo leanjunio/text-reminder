@@ -75,22 +75,29 @@ describe('Testing helpers', () => {
     });
 
     test(`Should be able to get all of a user's reminders`, async () => {
-      const createdUser = await createUser();
-
-      const reminders: IReminder[] = await fetchAllUserReminders(createdUser._id);
-    });
-
-    test(`Should be able to get all of a user's reminders and the new one`, async () => {
-      const createdUser = await createUser();
+  describe('Address', () => {
+    test('Should be able to create a reminder', async () => {
       const newReminder: IReminder = {
         time: new Date(),
-        message: 'Buy oranges',
+        message: 'Buy milk',
       };
 
-      const reminders: IReminder[] = await appendReminderToUser(createdUser._id);
+      const reminder = await createReminder(newReminder);
+      expect(reminder._id).toBeDefined();
+    });
 
-      expect(reminders).toBeDefined();
-      expect(reminders.length).toBeGreaterThanOrEqual(0);
+    test('Should be able to get the user with the updated reminder', async () => {
+      const user = await createUser();
+      const newReminder: IReminder = {
+        time: new Date(),
+        message: 'Buy milk',
+      };
+
+      const createdReminder = await createReminder(newReminder);
+      const updatedUser: any = await attachReminderToUser(user._id, createdReminder._id);
+
+      expect(updatedUser.reminders).toBeDefined();
+      expect(Array.isArray(updatedUser.reminders)).toBe(true);
     });
   });
 });
