@@ -12,14 +12,15 @@ export class UserClass {
   @prop()
   public password!: string;
 
-  @prop({ ref: 'Reminder' })
-  public reminders?: Ref<ReminderClass>;
+  @prop({ ref: () => ReminderClass })
+  public reminders?: Ref<ReminderClass>[];
 }
 
 export interface IUser {
   firstName: string;
   mobile: string;
   password: string;
+  reminders?: any;
 }
 
 export const UserModel = getModelForClass(UserClass);
