@@ -1,7 +1,9 @@
-import { ReminderModel, IReminder } from '../models/Reminder';
-import { Schema } from 'mongoose';
+import { Types } from 'mongoose';
 
-export const createReminder = async (userId: Schema.Types.ObjectId, reminderData: IReminder) => {
+import { ReminderModel, IReminder } from '../models/Reminder';
+import { updateUserData } from '../helpers/users';
+
+export const createReminder = async (reminderData: IReminder) => {
   const reminder = await ReminderModel.create(reminderData);
   return reminder;
 };
