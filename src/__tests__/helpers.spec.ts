@@ -121,5 +121,15 @@ describe('Testing helpers', () => {
       expect(updatedUser.reminders).toBeDefined();
       expect(Array.isArray(updatedUser.reminders)).toBe(true);
     });
+
+    test(`Should be able to get a reminder's message when looking for a reminderId that exists`, async () => {
+      const userWithReminder: any = await createUserWithReminder();
+      const firstReminder = userWithReminder.reminders[0];
+      const reminder: any = await getReminder(firstReminder);
+
+      expect(reminder._id).toBeDefined();
+      expect(reminder.time).toBeInstanceOf(Date);
+      expect(reminder.message).toMatch('buy new shoes');
+    });
   });
 });
