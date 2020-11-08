@@ -6,4 +6,9 @@ export const createReminder = async (userId: Schema.Types.ObjectId, reminderData
   return reminder;
 };
 
-export const attachedReminderToUser = async (userId: Schema.Types.ObjectId, reminder: any) => {};
+export const attachReminderToUser = async (userId: Types.ObjectId, reminderId: Types.ObjectId) => {
+  const update = { reminders: [reminderId] };
+  const updatedUser = await updateUserData(userId, update);
+
+  return updatedUser ?? 'Failed to attach reminder to user';
+};
