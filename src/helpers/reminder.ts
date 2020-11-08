@@ -14,3 +14,8 @@ export const attachReminderToUser = async (userId: Types.ObjectId, reminderId: T
 
   return updatedUser ?? 'Failed to attach reminder to user';
 };
+
+export const getReminder = async (reminderId: Types.ObjectId) => {
+  const reminder = await ReminderModel.findById(reminderId).exec();
+  return reminder;
+};
