@@ -18,6 +18,23 @@ const createUser = async () => {
   return registeredUser;
 };
 
+const createUserWithReminder = async () => {
+  const reminderData: IReminder = {
+    time: new Date(),
+    message: 'buy new shoes',
+  };
+
+  const reminder = await createReminder(reminderData);
+  const user: IUser = {
+    firstName: 'John',
+    mobile: '+16478394645',
+    password: 'some-password',
+    reminders: [reminder._id],
+  };
+
+  const registeredUser = await registerUser(user);
+  return registeredUser;
+};
 describe('Testing helpers', () => {
   beforeAll(async () => await db.connect());
   afterEach(async () => await db.clearDatabase());
