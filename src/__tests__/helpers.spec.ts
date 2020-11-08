@@ -75,6 +75,10 @@ describe('Testing helpers', () => {
     });
 
     test(`Should be able to get all of a user's reminders`, async () => {
+      const createdUserWithReminder = await createUserWithReminder();
+
+      expect(createdUserWithReminder.reminders).toBeDefined();
+    });
   describe('Address', () => {
     test('Should be able to create a reminder', async () => {
       const newReminder: IReminder = {
