@@ -38,12 +38,12 @@ describe('Password', () => {
 });
 
 describe('User', () => {
-  test('Should be able to find a user and get all user props', async () => {
-    const createdUser = await createUser();
-    const user = await getUserData();
+    test('Should be able to find a user and get _id', async () => {
+      const createdUser = await createUser();
+      const user: any = await getUserData(createdUser._id);
 
-    expect(user._id).toBeDefined();
-  });
+      expect(user._id).toBeDefined();
+    });
 
   test(`Should be able to get all of a user's reminders`, async () => {
     const createdUser = await createUser();
