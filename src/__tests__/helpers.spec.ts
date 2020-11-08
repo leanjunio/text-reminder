@@ -1,8 +1,10 @@
-import { Types, Schema, mongo } from 'mongoose';
+import { Types } from 'mongoose';
 import { hashPassword, comparePasswords } from '../utilities/password';
-import { IUser, UserModel } from '../models/User';
+import { IUser } from '../models/User';
 
-import { registerUser, getUserData } from '../helpers/users';
+import { registerUser, getUserData, fetchAllUserReminders } from '../helpers/users';
+import { attachReminderToUser, createReminder } from '../helpers/reminder';
+
 import { IReminder } from '../models/Reminder';
 
 import db from '../db-setup';
@@ -35,6 +37,7 @@ const createUserWithReminder = async () => {
   const registeredUser = await registerUser(user);
   return registeredUser;
 };
+
 describe('Testing helpers', () => {
   beforeAll(async () => await db.connect());
   afterEach(async () => await db.clearDatabase());
@@ -93,6 +96,7 @@ describe('Testing helpers', () => {
     //   expect(reminders.length).toBeGreaterThanOrEqual(0);
     // });
   });
+
   describe('Address', () => {
     test('Should be able to create a reminder', async () => {
       const newReminder: IReminder = {
