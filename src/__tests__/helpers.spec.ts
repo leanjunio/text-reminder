@@ -15,6 +15,9 @@ const createUser = async () => {
   return registeredUser;
 };
 
+  beforeAll(async () => await db.connect());
+  afterEach(async () => await db.clearDatabase());
+  afterAll(async () => await db.closeDatabase());
 describe('Password', () => {
   test('Should be able to encrypt a password string', async () => {
     const password: string = 'some-password';
