@@ -38,3 +38,10 @@ export const appendReminderToUser = async (userId: Types.ObjectId, reminderId: T
 
   return updatedUser;
 };
+
+export const checkIfUserAlreadyExists = async (mobile: string) => {
+  const filter = { mobile };
+  const foundUser = await UserModel.findOne(filter).exec();
+
+  return foundUser;
+};
