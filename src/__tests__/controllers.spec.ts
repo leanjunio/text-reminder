@@ -21,7 +21,7 @@ describe('Controllers', () => {
   afterAll(async () => await db.closeDatabase());
 
   describe('Users', () => {
-    test('Should return the registered user', async () => {
+    test('(POST /users/register) Should return the registered user', async () => {
       const sampleUser: IUser = {
         firstName: 'JaneDoe',
         mobile: '+16475713515',
