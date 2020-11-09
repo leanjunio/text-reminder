@@ -2,7 +2,7 @@ import { Types } from 'mongoose';
 import { hashPassword, comparePasswords } from '../utilities/password';
 import { IUser } from '../models/User';
 
-import { registerUser, getUserData, fetchAllUserReminders } from '../helpers/users';
+import { registerUser, getUserData, appendReminderToUser, fetchAllUserReminders } from '../helpers/users';
 import { attachReminderToUser, createReminder, getReminder } from '../helpers/reminder';
 
 import { IReminder } from '../models/Reminder';
