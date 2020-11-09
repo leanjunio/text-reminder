@@ -4,6 +4,8 @@ import express from 'express';
 import { IUser } from '../models/User';
 import userRoutes from '../routes/users';
 
+import { comparePasswords } from '../utilities/password';
+
 import db from '../db-setup';
 
 const app = express();
@@ -36,7 +38,9 @@ describe('Controllers', () => {
       expect(user?._id).toBeDefined();
       expect(user?.firstName).toEqual(sampleUser.firstName);
       expect(user?.mobile).toEqual(sampleUser.mobile);
-      expect(user?.password).toEqual(sampleUser.password);
+
+      const areEqualPasswords = await comparePasswords(sampleUser.password, user?.password);
+      expect(areEqualPasswords).toBeTruthy();
     });
   });
 });
