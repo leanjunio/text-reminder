@@ -1,8 +1,12 @@
-import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
+import { getModelForClass, prop, Ref, pre } from '@typegoose/typegoose';
 
 import { ReminderClass } from './Reminder';
+import { hashPassword } from '../utilities/password';
 
-export class UserClass {
+@pre<UserClass>('save', async function () {
+  this.password = await hashPassword(this.password);
+})
+class UserClass {
   @prop()
   public firstName!: string;
 
