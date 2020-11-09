@@ -83,18 +83,22 @@ describe('Testing helpers', () => {
       expect(createdUserWithReminder.reminders).toBeDefined();
     });
 
-    // test(`Should be able to get all of a user's reminders and the new one`, async () => {
-    //   const createdUser = await createUser();
-    //   const newReminder: IReminder = {
-    //     time: new Date(),
-    //     message: 'Buy oranges',
-    //   };
+    test(`Should be able to get all of a user's reminders and the new one`, async () => {
+      const createdUser = await createUserWithReminder();
+      const newReminder: IReminder = {
+        time: new Date(),
+        message: 'Buy oranges',
+      };
 
-    //   const reminders: IReminder[] = await appendReminderToUser(createdUser._id);
+      const savedReminder = await createReminder(newReminder);
+      const user: any = await appendReminderToUser(createdUser._id, savedReminder._id);
 
-    //   expect(reminders).toBeDefined();
-    //   expect(reminders.length).toBeGreaterThanOrEqual(0);
-    // });
+      const userReminders = await fetchAllUserReminders(user._id);
+
+      expect(userReminders).toBeDefined();
+      expect(Array.isArray(userReminders)).toBeTruthy();
+      expect(userReminders).toContainEqual(savedReminder._id);
+    });
   });
 
   describe('Reminder', () => {
