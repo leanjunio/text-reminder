@@ -24,5 +24,17 @@ export const fetchAllUserReminders = async (userId: Types.ObjectId) => {
   const projections = { reminders: true };
   const user = await UserModel.findById(userId, projections).exec();
 
-  return user ?? `User has no reminders.`;
+  return user?.reminders ?? `User has no reminders.`;
+};
+
+export const appendReminderToUser = async (userId: Types.ObjectId, reminderId: Types.ObjectId) => {
+  const user = await UserModel.findById(userId).exec();
+
+  const reminders = user?.reminders;
+  reminders?.push(reminderId);
+
+  const update = { reminders };
+  const updatedUser = await updateUserData(userId, update);
+
+  return updatedUser;
 };
