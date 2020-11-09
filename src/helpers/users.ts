@@ -1,9 +1,7 @@
 import { Types } from 'mongoose';
 import { UserModel, IUser } from '../models/User';
-import { hashPassword } from '../utilities/password';
 
 export const registerUser = async (userData: IUser) => {
-  userData.password = await hashPassword(userData.password);
   const createdUser = await UserModel.create(userData);
 
   return createdUser;
