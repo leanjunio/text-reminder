@@ -70,6 +70,18 @@ describe('Testing helpers', () => {
       expect(user._id).toBeDefined();
     });
 
+    test(`Should be able to register a new user and receive the user's hashed password`, async () => {
+      const user: IUser = {
+        firstName: 'Dorothy',
+        mobile: '6478405050',
+        password: 'dorothy-password',
+      };
+
+      const registeredUser = await registerUser(user);
+      const areEqualPasswords = await comparePasswords(user.password, registeredUser.password);
+      expect(areEqualPasswords).toBeTruthy();
+    });
+
     test('Should get a message saying "No user with id:{id} found."', async () => {
       const id = new Types.ObjectId();
       const user: any = await getUserData(id);
