@@ -13,3 +13,7 @@ export const userRegistrationSchema = joi.object({
   mobile: joi.string().required(),
   email: joi.string().email().required(),
 });
+
+export const loginSchema = joi.object({
+  email: joi.string().email().required(),
+});
