@@ -16,12 +16,12 @@ export async function registerUser(req: Request, res: Response, next: NextFuncti
   }
 }
 
-export async function loginUser(req: Request, res: Response, next: NextFunction) {
+export async function sendLoginToken(req: Request, res: Response, next: NextFunction) {
   try {
-    await UserServices.loginUser(req.body);
+    await UserServices.sendLoginTokenToUserMobile(req.body);
 
     res.status(StatusCodes.OK).json({
-      message: 'User logged in',
+      message: 'Login token sent. Enter the passcode to login',
     });
   } catch (error) {
     next(error);
