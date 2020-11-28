@@ -68,3 +68,4 @@
 {"message":"\"email\" is required","level":"error"}
 {"message":"Connected to: mongodb://localhost:27017/text-reminder-dev","level":"info"}
 {"message":"Connected to: mongodb://localhost:27017/text-reminder-dev","level":"info"}
+{"message":"Connected to: mongodb://localhost:27017/text-reminder-dev","level":"info"}
