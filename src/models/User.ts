@@ -24,7 +24,6 @@ export interface IUser {
   lastName: string;
   email: string;
   mobile: string;
-  password: string;
   reminders?: any;
 }
 
