@@ -8,3 +8,7 @@ export function sendVerificationToken(mobile: string) {
     .services(TWILIO_SERVICE_SID)
     .verifications.create({ to: `+1${mobile}`, channel: 'sms' });
 }
+
+export function retrieveVerificationStatus(code: string, mobile: string) {
+  return client.verify.services(TWILIO_SERVICE_SID).verificationChecks.create({ to: `+1${mobile}`, code });
+}
