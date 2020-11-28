@@ -18,6 +18,22 @@ export async function loginUser(email: string) {
     throw error;
   }
 }
+
+export async function retrieveUserMobileFromEmail(email: string) {
+  try {
+    const foundUser = await UserModel.findOne({ email }).exec();
+
+    if (!foundUser) {
+      return Promise.reject(new Error(`A user with email: ${email} cannot be found.`));
+    }
+
+    return foundUser.mobile;
+  } catch (error) {
+    log.error(error.message);
+    throw error;
+  }
+}
+
 function findUserWithEmail(email: string) {
   return UserModel.findOne({ email }).exec();
 }
