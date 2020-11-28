@@ -21,6 +21,7 @@
     "joi": "^17.3.0",
     "mongoose": "^5.10.13",
     "ts-node": "^9.0.0",
+    "twilio": "^3.52.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
