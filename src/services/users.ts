@@ -9,6 +9,15 @@ export function registerUser(userData: IUser) {
   return UserModel.create(userData);
 }
 
+export async function loginUser(email: string) {
+  try {
+    const userMobile = await retrieveUserMobileFromEmail(email);
+    return TwilioServices.sendVerificationToken(userMobile);
+  } catch (error) {
+    log.error(error.message);
+    throw error;
+  }
+}
 function findUserWithEmail(email: string) {
   return UserModel.findOne({ email }).exec();
 }
