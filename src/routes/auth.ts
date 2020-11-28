@@ -12,6 +12,10 @@ router.post(
   AuthControllers.registerUser
 );
 
-router.post('/login', [UserValidation.loginUser, UserMiddlewares.isAbleToLogin], AuthControllers.loginUser);
+router.post(
+  '/login/token',
+  [UserValidation.loginUser, UserMiddlewares.isAbleToLogin],
+  AuthControllers.sendLoginToken
+);
 
 export default router;
