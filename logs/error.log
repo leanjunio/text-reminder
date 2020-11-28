@@ -1,0 +1,4 @@
+{"ok":0,"code":18,"codeName":"AuthenticationFailed","name":"MongoError","level":"error"}
+{"ok":0,"code":18,"codeName":"AuthenticationFailed","name":"MongoError","level":"error"}
+{"message":"\"mobile\" is required","level":"error"}
+{"message":"\"email\" is required","level":"error"}
