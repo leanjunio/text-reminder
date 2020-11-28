@@ -11,6 +11,9 @@ class UserClass {
   public firstName!: string;
 
   @prop()
+  public lastName!: string;
+
+  @prop()
   public mobile!: string;
 
   @prop()
@@ -22,6 +25,7 @@ class UserClass {
 
 export interface IUser {
   firstName: string;
+  lastName: string;
   mobile: string;
   password: string;
   reminders?: any;
