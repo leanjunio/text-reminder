@@ -15,3 +15,15 @@ export async function registerUser(req: Request, res: Response, next: NextFuncti
     next(error);
   }
 }
+
+export async function loginUser(req: Request, res: Response, next: NextFunction) {
+  try {
+    await UserServices.loginUser(req.body);
+
+    res.status(StatusCodes.OK).json({
+      message: 'User logged in',
+    });
+  } catch (error) {
+    next(error);
+  }
+}
