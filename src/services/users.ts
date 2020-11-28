@@ -1,4 +1,3 @@
-import { Types } from 'mongoose';
 import { UserModel, IUser } from '../models/User';
 
 import * as TwilioServices from '../services/twilio';
