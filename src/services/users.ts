@@ -42,9 +42,11 @@ export async function verifyLoginToken(code: string, mobile: string) {
     const verification = await TwilioServices.retrieveVerificationStatus(code, mobile);
     const isApprovedVerificationStatus = verification.status === 'approved';
 
-    if (isApprovedVerificationStatus) {
-      return { token: JWTServices.signToken({ mobile }) };
+    if (!isApprovedVerificationStatus) {
+      return Promise.reject(new Error(`The verification failed. Please re-try logging in.`));
     }
+
+    return JWTServices.signToken({ mobile });
   } catch (error) {
     log.error(error.message);
     throw error;
