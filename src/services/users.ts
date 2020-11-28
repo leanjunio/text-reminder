@@ -1,6 +1,10 @@
 import { Types } from 'mongoose';
 import { UserModel, IUser } from '../models/User';
 
+import { config } from '../config';
+
+const log = config.LOG;
+
 export function registerUser(userData: IUser) {
   return UserModel.create(userData);
 }
@@ -53,7 +57,22 @@ export async function isAbleToRegister(email: string): Promise<boolean> {
 
     return isExistingUser;
   } catch (error) {
-    console.error(error.message);
+    log.error(error.message);
+    throw error;
+  }
+}
+export async function isAbleToLogin(email: string): Promise<boolean> {
+  try {
+    const foundUser = await findUserWithEmail(email);
+    const isExistingUser: boolean = !!foundUser;
+
+    if (!isExistingUser) {
+      return Promise.reject(new Error(`A user with email: ${email} does not exist.`));
+    }
+
+    return isExistingUser;
+  } catch (error) {
+    log.error(error.message);
     throw error;
   }
 }
