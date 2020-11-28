@@ -2,6 +2,7 @@ import { Types } from 'mongoose';
 import { UserModel, IUser } from '../models/User';
 
 import * as TwilioServices from '../services/twilio';
+import * as JWTServices from '../services/jwt';
 
 import { config } from '../config';
 
@@ -30,6 +31,20 @@ export async function retrieveUserMobileFromEmail(email: string) {
     }
 
     return foundUser.mobile;
+  } catch (error) {
+    log.error(error.message);
+    throw error;
+  }
+}
+
+export async function verifyLoginToken(code: string, mobile: string) {
+  try {
+    const verification = await TwilioServices.retrieveVerificationStatus(code, mobile);
+    const isApprovedVerificationStatus = verification.status === 'approved';
+
+    if (isApprovedVerificationStatus) {
+      return { token: JWTServices.signToken({ mobile }) };
+    }
   } catch (error) {
     log.error(error.message);
     throw error;
