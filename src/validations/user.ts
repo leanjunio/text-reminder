@@ -14,6 +14,10 @@ export const userRegistrationSchema = joi.object({
   email: joi.string().email().required(),
 });
 
-export const loginSchema = joi.object({
+export const sendLoginTokenSchema = joi.object({
   email: joi.string().email().required(),
+});
+
+export const verifyLoginTokenSchema = joi.object({
+  token: joi.string().required(),
 });
