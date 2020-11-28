@@ -1,6 +1,8 @@
 import * as UserValidationSchemas from '../../validations/user';
 import ValidationMiddleware from './index';
 
-export default {
+const UserValidation = {
   registerUser: ValidationMiddleware(UserValidationSchemas.userRegistrationSchema),
 };
+
+export default UserValidation;
