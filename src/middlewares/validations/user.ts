@@ -3,7 +3,8 @@ import ValidationMiddleware from './index';
 
 const UserValidation = {
   registerUser: ValidationMiddleware(UserValidationSchemas.userRegistrationSchema),
-  loginUser: ValidationMiddleware(UserValidationSchemas.userRegistrationSchema),
+  sendLoginToken: ValidationMiddleware(UserValidationSchemas.sendLoginTokenSchema),
+  verifyLoginToken: ValidationMiddleware(UserValidationSchemas.verifyLoginTokenSchema),
 };
 
 export default UserValidation;
