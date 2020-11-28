@@ -12,7 +12,7 @@ const config: IDatabaseConfig = {
   PORT: process.env.DB_PORT ?? '27017',
   USER: process.env.DB_USER ?? 'test',
   PASSWORD: process.env.DB_PASSWORD ?? 'test',
-  NAME: process.env.DB_NAME ?? 'bob-nurse-motors',
+  NAME: process.env.DB_NAME ?? 'text-reminder',
   URI: '',
 };
 
