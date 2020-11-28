@@ -2,7 +2,7 @@ import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
 
 import { ReminderClass } from './Reminder';
 
-class UserClass {
+class User {
   @prop()
   public firstName!: string;
 
@@ -27,4 +27,4 @@ export interface IUser {
   reminders?: any;
 }
 
-export const UserModel = getModelForClass(UserClass);
+export const UserModel = getModelForClass(User);
