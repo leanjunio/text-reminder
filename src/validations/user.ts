@@ -20,4 +20,5 @@ export const sendLoginTokenSchema = joi.object({
 
 export const verifyLoginTokenSchema = joi.object({
   token: joi.string().required(),
+  mobile: joi.string().required(),
 });
