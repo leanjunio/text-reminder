@@ -42,7 +42,7 @@ const appendReminderToUser = async (userId: Types.ObjectId, reminderId: Types.Ob
   return updatedUser;
 };
 
-export async function isAlreadyExistingUser(email: string): Promise<boolean> {
+export async function isAbleToRegister(email: string): Promise<boolean> {
   try {
     const foundUser = await findUserWithEmail(email);
     const isExistingUser: boolean = !!foundUser;
