@@ -1,6 +1,6 @@
 import { getModelForClass, prop, Ref } from '@typegoose/typegoose';
 
-import { ReminderClass } from './Reminder';
+import { Reminder } from './Reminder';
 
 class User {
   @prop()
@@ -15,8 +15,8 @@ class User {
   @prop()
   public mobile!: string;
 
-  @prop({ ref: () => ReminderClass })
-  public reminders?: Ref<ReminderClass>[];
+  @prop({ ref: () => Reminder })
+  public reminders?: Ref<Reminder>[];
 }
 
 export interface IUser {
@@ -24,7 +24,7 @@ export interface IUser {
   lastName: string;
   email: string;
   mobile: string;
-  reminders?: any;
+  reminders?: Reminder[];
 }
 
 export const UserModel = getModelForClass(User);
