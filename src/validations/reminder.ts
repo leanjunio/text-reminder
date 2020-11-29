@@ -10,6 +10,7 @@ export const userValidationSchema = joi.object({
 export const addReminderSchema = joi.object({
   time: joi.date().required(),
   message: joi.string().required(),
+  daily: joi.bool(),
 });
 
 export const sendLoginTokenSchema = joi.object({
