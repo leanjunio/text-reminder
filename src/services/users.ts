@@ -85,3 +85,7 @@ export async function isAbleToLogin(email: string): Promise<boolean> {
     throw error;
   }
 }
+
+export function findAllUsers() {
+  return UserModel.find({}).exec();
+}
