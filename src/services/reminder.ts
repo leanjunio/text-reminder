@@ -1,5 +1,7 @@
 import { ReminderModel, IReminder } from '../models/Reminder';
+
 import * as UserServices from '../services/users';
+
 import { config } from '../config';
 
 const log = config.LOG;
@@ -12,12 +14,12 @@ export async function addReminderUnderUserWithMatchingEmail(email: string, remin
       return Promise.reject(new Error(`Cannot add reminder. User with email ${email} cannot be found.`));
     }
 
-    const newReminder = createReminder(reminder);
+    const createdReminder = await createReminder(reminder);
 
-    userWithMatchingEmail.reminders?.push(newReminder._id);
-    userWithMatchingEmail.save();
+    userWithMatchingEmail.reminders?.push(createdReminder);
+    await userWithMatchingEmail.save();
 
-    return newReminder.save();
+    return createdReminder;
   } catch (error) {
     log.error(error.message);
     throw error;
@@ -25,5 +27,7 @@ export async function addReminderUnderUserWithMatchingEmail(email: string, remin
 }
 
 function createReminder(reminder: IReminder) {
-  return new ReminderModel(reminder);
+  const newReminder = new ReminderModel(reminder);
+
+  return newReminder.save();
 }
