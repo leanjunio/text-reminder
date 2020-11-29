@@ -51,13 +51,13 @@ export async function verifyLoginToken(code: string, mobile: string) {
     throw error;
   }
 }
-export function findUserWithEmail(email: string) {
+export function findUserWithMatchingEmail(email: string) {
   return UserModel.findOne({ email }).exec();
 }
 
 export async function isAbleToRegister(email: string): Promise<boolean> {
   try {
-    const foundUser = await findUserWithEmail(email);
+    const foundUser = await findUserWithMatchingEmail(email);
     const isExistingUser: boolean = !!foundUser;
 
     if (isExistingUser) {
@@ -72,7 +72,7 @@ export async function isAbleToRegister(email: string): Promise<boolean> {
 }
 export async function isAbleToLogin(email: string): Promise<boolean> {
   try {
-    const foundUser = await findUserWithEmail(email);
+    const foundUser = await findUserWithMatchingEmail(email);
     const isExistingUser: boolean = !!foundUser;
 
     if (!isExistingUser) {
