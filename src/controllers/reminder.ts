@@ -5,14 +5,14 @@ import * as ReminderServices from '../services/reminder';
 
 export async function addReminderUnderUserWithMatchingEmail(req: Request, res: Response, next: NextFunction) {
   try {
-    const userWithNewReminder = await ReminderServices.addReminderUnderUserWithMatchingEmail(
+    const newReminder = await ReminderServices.addReminderUnderUserWithMatchingEmail(
       req.params.email,
       req.body
     );
 
     res.status(StatusCodes.OK).json({
       message: 'Added reminder',
-      user: userWithNewReminder,
+      reminder: newReminder,
     });
   } catch (error) {
     next(error);
