@@ -16,12 +16,12 @@ export async function isCurrentUserLoggedIn(req: Request, _: Response, next: Nex
     next(new Error(`Cannot check if current user of email ${email} is logged in.`));
   }
 
-  const token = extractTokenFromHeader(req.headers);
-  const decoded: IDecodedTokenData = jwt.verify(token, process.env.SECRET_KEY!);
-
-  const mobileFromToken = decoded.data?.mobile;
-
   try {
+    const token = extractTokenFromHeader(req.headers);
+    const decoded: IDecodedTokenData = jwt.verify(token, process.env.SECRET_KEY!);
+
+    const mobileFromToken = decoded.data?.mobile;
+
     const foundUserMobile = await UserServices.retrieveUserMobileFromEmail(email);
     const areMatchingMobiles = foundUserMobile === mobileFromToken;
 
