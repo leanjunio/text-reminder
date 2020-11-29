@@ -1,11 +1,14 @@
 import { StatusCodes } from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 
-import * as UserServices from '../services/users';
+import * as ReminderServices from '../services/reminder';
 
 export async function addReminderUnderUserWithMatchingEmail(req: Request, res: Response, next: NextFunction) {
   try {
-    const userWithNewReminder = await UserServices.registerUser(req.body);
+    const userWithNewReminder = await ReminderServices.addReminderUnderUserWithMatchingEmail(
+      req.params.email,
+      req.body
+    );
 
     res.status(StatusCodes.OK).json({
       message: 'Added reminder',
