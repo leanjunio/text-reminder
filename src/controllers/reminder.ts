@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import * as UserServices from '../services/users';
 
-export async function addReminderUnderUserWithEmail(req: Request, res: Response, next: NextFunction) {
+export async function addReminderUnderUserWithMatchingEmail(req: Request, res: Response, next: NextFunction) {
   try {
     const userWithNewReminder = await UserServices.registerUser(req.body);
 
