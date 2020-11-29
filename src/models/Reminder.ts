@@ -1,6 +1,6 @@
 import { getModelForClass, prop } from '@typegoose/typegoose';
 
-export class ReminderClass {
+export class Reminder {
   @prop()
   public time!: Date;
 
@@ -13,4 +13,4 @@ export interface IReminder {
   message: string;
 }
 
-export const ReminderModel = getModelForClass(ReminderClass);
+export const ReminderModel = getModelForClass(Reminder);
