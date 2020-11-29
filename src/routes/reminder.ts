@@ -5,6 +5,12 @@ const router = Router();
 import ReminderMiddlewares from '../middlewares/validations/reminder';
 import * as Verify from '../middlewares/verify';
 
-router.post('/:email', [Verify.isCurrentUserLoggedIn, ReminderMiddlewares.addReminder]);
+import * as ReminderControllers from '../controllers/reminder';
+
+router.post(
+  '/:email',
+  [Verify.isCurrentUserLoggedIn, ReminderMiddlewares.addReminder],
+  ReminderControllers.addReminderUnderUserWithMatchingEmail
+);
 
 export default router;
