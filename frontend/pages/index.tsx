@@ -1,9 +1,15 @@
-import { Button } from "antd";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 
-export default function Clicked() {
+export default function Index() {
   return (
-    <div className="App">
-      <Button type="primary">Click!</Button>
-    </div>
+    <>
+      <Container>
+        <Typography
+          component="div"
+          style={{ backgroundColor: "#cfe8fc", height: "100vh" }}
+        />
+      </Container>
+    </>
   );
 }
